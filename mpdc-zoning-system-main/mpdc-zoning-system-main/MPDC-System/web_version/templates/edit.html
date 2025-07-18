@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-light">Edit Land Record</h2>
+<form method="post">
+    <input type="text" name="owner_name" value="{{ land[1] }}" class="form-control mb-2" required>
+    <input type="text" name="title_number" value="{{ land[2] }}" class="form-control mb-2" required>
+    <input type="text" name="lot_number" value="{{ land[3] }}" class="form-control mb-2" required>
+    <input type="text" name="area" value="{{ land[4] }}" class="form-control mb-2" required>
+    <input type="text" name="location" value="{{ land[5] }}" class="form-control mb-2" required>
+    <select name="zoning_type" class="form-control mb-2">
+        <option {% if land[6] == 'Residential' %}selected{% endif %}>Residential</option>
+        <option {% if land[6] == 'Commercial' %}selected{% endif %}>Commercial</option>
+        <option {% if land[6] == 'Agricultural' %}selected{% endif %}>Agricultural</option>
+        <option {% if land[6] == 'Industrial' %}selected{% endif %}>Industrial</option>
+    </select>
+    <textarea name="remarks" class="form-control mb-3">{{ land[7] }}</textarea>
+    <button type="submit" class="btn btn-success">Update</button>
+</form>
+{% endblock %}

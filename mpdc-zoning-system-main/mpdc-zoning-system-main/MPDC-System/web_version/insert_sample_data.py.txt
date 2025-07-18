@@ -1,0 +1,22 @@
+import sqlite3
+from datetime import datetime
+
+conn = sqlite3.connect("database/mpdc.db")
+cursor = conn.cursor()
+
+sample_data = [
+    ("Juan Dela Cruz", "T-001", "L-01", "500 sqm", "Brgy. Parang Hills", "Residential", "Valid", datetime.now().strftime("%Y-%m-%d")),
+    ("Maria Santos", "T-002", "L-05", "300 sqm", "Brgy. Dilasag", "Commercial", "Pending", datetime.now().strftime("%Y-%m-%d")),
+    ("Pedro Reyes", "T-003", "L-10", "1000 sqm", "Brgy. Centro", "Agricultural", "Approved", datetime.now().strftime("%Y-%m-%d")),
+]
+
+cursor.executemany("""
+    INSERT INTO lands (
+        owner_name, title_number, lot_number, area, location, zoning_type, remarks, date_encoded
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+""", sample_data)
+
+conn.commit()
+conn.close()
+
+print("✅ Sample zoning data inserted successfully!")

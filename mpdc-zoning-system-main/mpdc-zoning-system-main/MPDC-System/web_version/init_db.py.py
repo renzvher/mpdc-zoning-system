@@ -1,0 +1,41 @@
+import sqlite3
+
+conn = sqlite3.connect("database/mpdc.db")
+
+cursor = conn.cursor()
+
+# Create users table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL
+)
+""")
+
+# Create lands table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS lands (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    owner_name TEXT NOT NULL,
+    title_number TEXT NOT NULL,
+    lot_number TEXT,
+    area TEXT,
+    location TEXT,
+    zoning_type TEXT,
+    remarks TEXT,
+    date_encoded TEXT
+)
+""")
+
+# Add default admin user
+cursor.execute("""
+INSERT OR IGNORE INTO users (username, password, role) 
+VALUES ('admin', 'admin123', 'admin')
+""")
+
+conn.commit()
+conn.close()
+
+print("✅ Database initialized with tables and admin user.")

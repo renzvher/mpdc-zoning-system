@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4 text-light">
+    <h2>Add New Land Record</h2>
+    <form method="post">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Owner Name:</label>
+                <input type="text" name="owner_name" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Title Number:</label>
+                <input type="text" name="title_number" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Lot Number:</label>
+                <input type="text" name="lot_number" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Area:</label>
+                <input type="text" name="area" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Location:</label>
+                <input type="text" name="location" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Zoning Type:</label>
+                <select name="zoning_type" class="form-control" required>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Agricultural">Agricultural</option>
+                    <option value="Industrial">Industrial</option>
+                </select>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label>Remarks:</label>
+                <textarea name="remarks" class="form-control" rows="2"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
